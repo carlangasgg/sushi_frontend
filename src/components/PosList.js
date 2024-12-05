@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchPos } from "../services/apiService";
+import { ListGroup, Container } from "react-bootstrap";
 
 const PosList = () => {
   const [items, setPos] = useState([]);
@@ -23,14 +24,16 @@ const PosList = () => {
   }
 
   return (
-    <div>
-      <h1>PoS disponibles</h1>
-      <ul>
+    <Container className="my-4">
+      <h1 className="mb-3">PoS disponibles</h1>
+      <ListGroup>
         {items.map((item) => (
-          <li key={item.id}>{item.name}</li>
+          <ListGroup.Item key={item.id} className="d-flex justify-content-between align-items-center">
+            <span>{item.name}</span>
+          </ListGroup.Item>
         ))}
-      </ul>
-    </div>
+      </ListGroup>
+    </Container>
   );
 };
 

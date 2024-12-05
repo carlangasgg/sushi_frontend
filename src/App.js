@@ -1,4 +1,5 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import PosList from "./components/PosList";
 import PrintersList from "./components/PrintersList";
 import RedSystemsList from "./components/RedSystemsList";
