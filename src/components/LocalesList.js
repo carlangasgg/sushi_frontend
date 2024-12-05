@@ -10,22 +10,19 @@ const LocalesList = () => {
     try {
       const data = await fetchLocales();
       setLocales(data);
-      setError(null); // Clear previous errors, if any
+      setError(null);
     } catch (err) {
       setError("Failed to fetch items");
     }
   };
 
   useEffect(() => {
-    // Initial load
     loadLocales();
 
-    // Set interval for auto-refresh
     const intervalId = setInterval(() => {
       loadLocales();
-    }, 15000); // 15 seconds
+    }, 15000);
 
-    // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
   }, []);
 

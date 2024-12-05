@@ -4,7 +4,7 @@ const API_BASE_URL = "http://localhost:3000";
 
 export const fetchPos = async () => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/device/show_pos`);
+    const response = await axios.get(`${API_BASE_URL}/device/show_pos_job`);
     return response.data;
   } catch (error) {
     console.error("Error fetching items:", error);
@@ -14,7 +14,7 @@ export const fetchPos = async () => {
 
 export const fetchPrinters = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/device/show_printers`);
+      const response = await axios.get(`${API_BASE_URL}/device/show_printers_job`);
       return response.data;
     } catch (error) {
       console.error("Error fetching items:", error);
@@ -24,7 +24,7 @@ export const fetchPrinters = async () => {
 
 export const fetchRedSystems = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/device/show_red_systems`);
+      const response = await axios.get(`${API_BASE_URL}/device/show_red_systems_job`);
       return response.data;
     } catch (error) {
       console.error("Error fetching items:", error);
