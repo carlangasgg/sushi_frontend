@@ -1,26 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { fetchLocales } from "../services/apiService";
-import { ListGroup, Container } from "react-bootstrap";
+import { ListGroup, Alert, Container } from "react-bootstrap";
 
 const LocalesList = () => {
   const [items, setLocales] = useState([]);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const loadLocales = async () => {
-      try {
-        const data = await fetchLocales();
-        setLocales(data);
-      } catch (err) {
-        setError("Failed to fetch items");
-      }
-    };
+  const loadLocales = async () => {
+    try {
+      const data = await fetchLocales();
+      setLocales(data);
+      setError(null); // Clear previous errors, if any
+    } catch (err) {
+      setError("Failed to fetch items");
+    }
+  };
 
+  useEffect(() => {
+    // Initial load
     loadLocales();
+
+    // Set interval for auto-refresh
+    const intervalId = setInterval(() => {
+      loadLocales();
+    }, 15000); // 15 seconds
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
   }, []);
 
   if (error) {
-    return <div>{error}</div>;
+    return <Alert variant="danger">{error}</Alert>;
   }
 
   return (
@@ -30,6 +40,7 @@ const LocalesList = () => {
         {items.map((item) => (
           <ListGroup.Item key={item.id} className="d-flex justify-content-between align-items-center">
             <span>{item.name}</span>
+            <span>{item.status}</span>
           </ListGroup.Item>
         ))}
       </ListGroup>
