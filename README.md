@@ -41,6 +41,13 @@ Instalar dependencias
   npm install
 ```
 
+Instalar TailwindCSS
+
+```bash
+  npm install -D tailwindcss
+  npx tailwindcss init
+```
+
 Iniciar servidor
 ```bash
   npm start
